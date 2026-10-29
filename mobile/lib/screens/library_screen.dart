@@ -70,7 +70,7 @@ class _LibraryScreenState extends State<LibraryScreen> {
                 if (a.summary.isNotEmpty) ...[const SizedBox(height: 6), Text(a.summary, maxLines: 3, overflow: TextOverflow.ellipsis, style: Theme.of(context).textTheme.bodyMedium?.copyWith(color: Colors.black54))],
                 if (a.tags.isNotEmpty) ...[const SizedBox(height: 10), Wrap(spacing: 6, children: a.tags.take(5).map((t) => _pill('#$t')).toList())]
               ]))
-            ]))),
+            ])))),
       ],
     )),
   );
