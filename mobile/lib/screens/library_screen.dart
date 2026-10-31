@@ -31,8 +31,14 @@ class _LibraryScreenState extends State<LibraryScreen> {
       final results = await Future.wait([service.fetchArticles(query: search.text, categoryId: categoryId), service.fetchCategories()]);
       if (!mounted) return;
       setState(() { articles = results[0] as List<Article>; categories = results[1] as List<Map<String,dynamic>>; loading = false; error = null; });
-    } catch (e) { if (mounted) setState(() { loading = false; error = '加载失败，请检查网络或云端配置。'; }); }
+    } } catch (e) {
+  if (mounted) {
+    setState(() {
+      loading = false;
+      error = '加载失败：\n$e';
+    });
   }
+}
   @override
   Widget build(BuildContext context) => Scaffold(
     appBar: AppBar(title: const Text('资料库', style: TextStyle(fontWeight: FontWeight.w700)), actions: [
